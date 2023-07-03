@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kratosgado/nasm-linux-compiler.git"
+    "url": "https://github.com/Kratosgado/nasm-compiler-linux.git"
   },
   "engines": {
     "vscode": "^1.79.0"
