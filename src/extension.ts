@@ -8,12 +8,10 @@ export function activate(context: vscode.ExtensionContext) {
 	const compileCommand = vscode.commands.registerCommand('extension.compileAssembly', async () => {
 		await compileAssembly();
 	});
-
 	// Register "Run Assembly" command
 	const runCommand = vscode.commands.registerCommand('extension.runAssembly', () => {
 		runAssembly();
 	});
-
 	// Add the commands to the context
 	context.subscriptions.push(compileCommand, runCommand);
 }
@@ -22,7 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() { }
 
 // Compilation logic
-async function compileAssembly() {
+async function compileAssembly(): Promise<string | undefined> {
 	const editor = vscode.window.activeTextEditor;
 	if (!editor) {
 		vscode.window.showErrorMessage('No active text editor.');
@@ -31,11 +29,10 @@ async function compileAssembly() {
 
 	const assemblyFilePath = editor.document.fileName;
 	const objectFilePath = assemblyFilePath.replace(/\.asm$/, '.o'); // Replace .asm with .o for the object file
-	const fileBasename = path.basename(assemblyFilePath, path.extname(assemblyFilePath));
-	const basename = assemblyFilePath.replace(/\.asm$/, "");
+	const basenamePath = assemblyFilePath.replace(/\.asm$/, "");
 
 	const nasmCommand = `nasm -f elf64 -o ${objectFilePath} ${assemblyFilePath}`;
-	const ldCommand = `ld "${objectFilePath}" -o "${basename}"`;
+	const ldCommand = `ld "${objectFilePath}" -o "${basenamePath}"`;
 
 	exec(nasmCommand, (nasmError, nasmStdout, nasmStderr) => {
 		if (nasmError) {
@@ -54,21 +51,13 @@ async function compileAssembly() {
 			console.log(nasmStderr);
 		}
 	});
+	return assemblyFilePath;
 }
 
 // Run logic
 async function runAssembly() {
-	const editor = vscode.window.activeTextEditor;
-	if (!editor) {
-		vscode.window.showErrorMessage('No active text editor.');
-		return;
-	}
-
-	await compileAssembly();
-
-	const assemblyFilePath = editor.document.fileName;
-	const fileBasename = path.basename(assemblyFilePath, path.extname(assemblyFilePath));
-	const objectFilePath = assemblyFilePath.replace(/\.asm$/, '.o');
+	const assemblyFilePath = await compileAssembly();
+	const fileBasename = path.basename(assemblyFilePath!, path.extname(assemblyFilePath!));
 
 	const execCommand = `./${fileBasename}`;
 
