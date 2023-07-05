@@ -36,18 +36,17 @@ For example if there is an image subfolder under your extension project workspac
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- NASM (Netwide Assembler) must be installed on your system. You can download and install NASM from the official website: [NASM Downloads](https://www.nasm.us/)
+
 
 ## Extension Settings
 
 Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
 
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `nasm-compiler-linux.enable`: Enable/disable this extension.
+* `extension.runAssembly`: f5 - run assembly 
 
 ## Known Issues
 * `Windows support not available` : working on it
@@ -74,7 +73,6 @@ Users appreciate release notes as you update your extension.
 Initial release of the NASM Extension.
 
 - Support for NASM assembly language in Visual Studio Code.
-- Syntax highlighting for NASM code.
 - Commands for compiling and running NASM assembly files.
 - Integration with the VS Code editor.
 

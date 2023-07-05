@@ -20,6 +20,8 @@
     "Other"
   ],
   "activationEvents": [
+    "onLanguage:asm",
+    "onLanguage:s",
     "onLanguage:asm-collection"
   ],
   "main": "./dist/extension.js",
@@ -28,7 +30,7 @@
       {
         "command": "extension.runAssembly",
         "key": "f5",
-        "when": "editorLangId == asm-collection"
+        "when": "editorLangId == asm-collection || editorLangId == asm || editorLangId == s"
       }
     ],
     "commands": [
