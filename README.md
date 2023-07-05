@@ -81,11 +81,6 @@ Initial release of the NASM Extension.
 
 - added support nasm language mode
 
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
 
 ## Following extension guidelines
 
