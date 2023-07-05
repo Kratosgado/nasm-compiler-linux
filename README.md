@@ -10,7 +10,8 @@ The NASM-compiler extension is a powerful tool for working with NASM (Netwide As
 - Run the compiled executables from within the editor
 - Integration with the VS Code editor, including syntax highlighting and code formatting for NASM assembly language
 
-\!\[feature X\]\(images/for-extension.png\)
+\!\[editor overview\]\(https://drive.google.com/file/d/1Q0T-o9AQEvUnEgg5-1Vj_0Qm1ltGwhZI/view?usp=drive_link\)
+\!\[run button show\]\(https://drive.google.com/file/d/1Oz3U8t0PH4uhIQ5ZilHzY2A11iSYYeeG/view?usp=drive_link\)
 
 > Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
