@@ -78,7 +78,16 @@ async function runAssembly() {
 
 	const execCommand = `./${fileBasename}`; // command to execute the executable
 
-	const terminal = vscode.window.createTerminal('NASM Terminal');
-	terminal.sendText(execCommand);
-	terminal.show();
+	// check and get a terminal with the name "NASM Terminal"
+	const existingTerminal = vscode.window.terminals.find((terminal) => terminal.name === 'NASM Terminal');
+
+	if (existingTerminal) {
+		existingTerminal.sendText(execCommand); // send the execCommand to it if such exists
+	} else {
+		// else create a new terminal with the name "NASM Terminal" and send the execCommand
+		const terminal = vscode.window.createTerminal('NASM Terminal');
+		terminal.sendText(execCommand);
+		terminal.show();
+	}
+
 }
