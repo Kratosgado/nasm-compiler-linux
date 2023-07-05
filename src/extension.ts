@@ -1,9 +1,17 @@
 import * as vscode from 'vscode';
 import { exec } from 'child_process';
 import path = require('path');
-import { stdout } from 'process';
+
+let runButton: vscode.StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
+	vscode.window.showInformationMessage("Assembly compiler activated");
+
+	runButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+	runButton.text = "$(triangle-right) Run";
+	runButton.tooltip = "Run Assembly";
+	runButton.command = "extension.runAssembly";
+	runButton.show();
 	// Register "Compile Assembly" command
 	const compileCommand = vscode.commands.registerCommand('extension.compileAssembly', async () => {
 		await compileAssembly();
@@ -20,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() { }
 
 // Compilation logic
-async function compileAssembly(): Promise<string | undefined> {
+async function compileAssembly() {
 	const editor = vscode.window.activeTextEditor;
 	if (!editor) {
 		vscode.window.showErrorMessage('No active text editor.');

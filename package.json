@@ -19,21 +19,31 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:asm-collection"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
+    "keybindings": [
       {
-        "command": "nasm-compiler-linux.helloWorld",
-        "title": "Hello World"
-      },
+        "command": "extension.runAssembly",
+        "key": "f5",
+        "when": "editorLangId == asm-collection"
+      }
+    ],
+    "commands": [
       {
         "command": "extension.compileAssembly",
         "title": "Compile Assembly"
       },
       {
         "command": "extension.runAssembly",
-        "title": "Run Assembly"
+        "title": "Run Assembly",
+        "category": "run/compile",
+        "icon": {
+          "dark": "$(triangle-right)",
+          "light": "$(triangle-right)"
+        }
       }
     ]
   },
