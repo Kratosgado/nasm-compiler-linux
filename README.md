@@ -69,7 +69,7 @@ For any questions or support related to the NASM extension, you can contact the 
 
 Users appreciate release notes as you update your extension.
 
-### 1.0.0
+### 0.0.1
 
 Initial release of the NASM Extension.
 
@@ -77,9 +77,9 @@ Initial release of the NASM Extension.
 - Commands for compiling and running NASM assembly files.
 - Integration with the VS Code editor.
 
-### 1.0.1
+### 0.0.2
 
-Fixed issue #.
+- added support nasm language mode
 
 ### 1.1.0
 
