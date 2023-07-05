@@ -62,7 +62,7 @@ This extension is released under the [MIT License](LICENSE).
 For any questions or support related to the NASM extension, you can contact the developer at:
 - Email: [mbeahessilfieprince@gmail.com](mailto:mbeahessilfieprince@gmail.com)
 - GitHub: [Kratosgado](https://github.com/Kratosgado)
-- LinkedIn: [Prince Mbeah Essilfie](https://www.linkedin.com/in/prince-mbeah-essilfie-6bb0b5231/)
+- LinkedIn: [Prince Mbeah Essilfie](https://www.linkedin.com/in/prince-mbeah-essilfie-6bb0b5231)
 - Twitter: [MbeahEssilfie](https://twitter.com/MbeahEssilfie)
 
 ## Release Notes
