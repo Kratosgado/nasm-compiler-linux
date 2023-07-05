@@ -1,16 +1,38 @@
 # nasm-compiler-linux README
 
-This is the README for your extension "nasm-compiler-linux". After writing up a brief description, we recommend including the following sections.
+The NASM-compiler extension is a powerful tool for working with NASM (Netwide Assembler) assembly language in Visual Studio Code. It provides features for compiling and running NASM assembly code directly from the editor.
+
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Compile NASM assembly code to object files
+- Link object files to create executable files
+- Run the compiled executables from within the editor
+- Integration with the VS Code editor, including syntax highlighting and code formatting for NASM assembly language
 
 For example if there is an image subfolder under your extension project workspace:
 
 \!\[feature X\]\(images/feature-x.png\)
 
 > Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+
+
+## Installation
+1. Launch Visual Studio Code.
+2. Go to the Extensions view by clicking on the square icon in the left sidebar or by pressing `Ctrl+Shift+X`.
+3. Search for "nasm-compiler-linux" in the Extensions view search bar.
+4. Click on the "nasm-compiler-linux" extension by Prince Mbeah Essilfie and click the "Install" button.
+
+
+## Usage
+1. Open a NASM assembly file (with the `.asm` extension) in Visual Studio Code.
+2. Use the provided commands or keybindings to compile and run the assembly code.
+3. The output of the compilation and execution will be shown in the integrated terminal.
+
+
+## Commands/Keybindings
+- `extension.compileAssembly`: Compiles the current NASM assembly file.
+- `extension.runAssembly`/`f5`: Compiles and runs the current NASM assembly file.
 
 ## Requirements
 
@@ -28,8 +50,20 @@ This extension contributes the following settings:
 * `myExtension.thing`: Set to `blah` to do something.
 
 ## Known Issues
+* `Windows support not available` : working on it
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## Contributing
+Contributions to the NASM extension are welcome! If you find any issues or have suggestions for improvements, please open an issue on the GitHub repository.
+
+## License
+This extension is released under the [MIT License](LICENSE).
+
+## Contact
+For any questions or support related to the NASM extension, you can contact the developer at:
+- Email: [mbeahessilfieprince@gmail.com](mailto:mbeahessilfieprince@gmail.com)
+- GitHub: [Kratosgado](https://github.com/Kratosgado)
+- LinkedIn: [Prince Mbeah Essilfie](https://www.linkedin.com/in/prince-mbeah-essilfie-6bb0b5231/)
+- Twitter: [MbeahEssilfie](https://twitter.com/MbeahEssilfie)
 
 ## Release Notes
 
@@ -37,7 +71,12 @@ Users appreciate release notes as you update your extension.
 
 ### 1.0.0
 
-Initial release of ...
+Initial release of the NASM Extension.
+
+- Support for NASM assembly language in Visual Studio Code.
+- Syntax highlighting for NASM code.
+- Commands for compiling and running NASM assembly files.
+- Integration with the VS Code editor.
 
 ### 1.0.1
 
