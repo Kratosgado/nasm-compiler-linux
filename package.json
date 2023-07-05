@@ -40,12 +40,17 @@
         "command": "extension.runAssembly",
         "title": "Run Assembly",
         "category": "run/compile",
-        "icon": {
-          "dark": "$(triangle-right)",
-          "light": "$(triangle-right)"
-        }
+        "icon": "$(play)"
       }
-    ]
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "extension.runAssembly",
+          "when": "editorLangId == asm-collection"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

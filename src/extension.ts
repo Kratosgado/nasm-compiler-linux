@@ -2,16 +2,20 @@ import * as vscode from 'vscode';
 import { exec } from 'child_process';
 import path = require('path');
 
+// declare run button as a status bar item
 let runButton: vscode.StatusBarItem;
 
+// function to activate our extension
 export function activate(context: vscode.ExtensionContext) {
-	vscode.window.showInformationMessage("Assembly compiler activated");
+	vscode.window.showInformationMessage("Assembly compiler activated"); // display a message when activated successfully
 
+	// define the properties of the button
 	runButton = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
-	runButton.text = "$(triangle-right) Run";
+	runButton.text = "$(play) Run";
 	runButton.tooltip = "Run Assembly";
 	runButton.command = "extension.runAssembly";
 	runButton.show();
+
 	// Register "Compile Assembly" command
 	const compileCommand = vscode.commands.registerCommand('extension.compileAssembly', async () => {
 		await compileAssembly();
@@ -24,29 +28,35 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(compileCommand, runCommand);
 }
 
-// This method is called when your extension is deactivated
+// function to be called when our extension is deactivated
 export function deactivate() { }
 
 // Compilation logic
 async function compileAssembly() {
-	const editor = vscode.window.activeTextEditor;
+	const editor = vscode.window.activeTextEditor;		// get the active editor
+
+	// check and stop compilation if there is no active editor
 	if (!editor) {
 		vscode.window.showErrorMessage('No active text editor.');
 		return;
 	}
 
-	const assemblyFilePath = editor.document.fileName;
+	const assemblyFilePath = editor.document.fileName;	// get the path to the assembly file
 	const objectFilePath = assemblyFilePath.replace(/\.asm$/, '.o'); // Replace .asm with .o for the object file
-	const basenamePath = assemblyFilePath.replace(/\.asm$/, "");
+	const basenamePath = assemblyFilePath.replace(/\.asm$/, "");	// get the basefilepath from the .asm filepath
 
-	const nasmCommand = `nasm -f elf64 -o ${objectFilePath} ${assemblyFilePath}`;
-	const ldCommand = `ld "${objectFilePath}" -o "${basenamePath}"`;
+	const nasmCommand = `nasm -f elf64 -o ${objectFilePath} ${assemblyFilePath}`;	// nasm command to compile the .asm to object code .o
+	const ldCommand = `ld "${objectFilePath}" -o "${basenamePath}"`;				// linking command to create an executable file
 
+	// run the nasmCommand
 	exec(nasmCommand, (nasmError, nasmStdout, nasmStderr) => {
+		// check if error in compiling and stop compilation
 		if (nasmError) {
 			vscode.window.showErrorMessage('Compilation failed. Check the output for errors.');
+			return;
 		} else {
 			exec(ldCommand, (ldError, ldStdout, ldStderr) => {
+				// check if there's is an error in linking and stop the compilation
 				if (ldError) {
 					vscode.window.showErrorMessage('Linking failed. Check the output for errors.');
 				} else {
@@ -59,15 +69,14 @@ async function compileAssembly() {
 			console.log(nasmStderr);
 		}
 	});
-	return assemblyFilePath;
+	return path.basename(assemblyFilePath, path.extname(assemblyFilePath)); // return the basename of the file
 }
 
 // Run logic
 async function runAssembly() {
-	const assemblyFilePath = await compileAssembly();
-	const fileBasename = path.basename(assemblyFilePath!, path.extname(assemblyFilePath!));
+	const fileBasename = await compileAssembly(); // the compileAssembly() command returns the basename of the assembler file
 
-	const execCommand = `./${fileBasename}`;
+	const execCommand = `./${fileBasename}`; // command to execute the executable
 
 	const terminal = vscode.window.createTerminal('NASM Terminal');
 	terminal.sendText(execCommand);
