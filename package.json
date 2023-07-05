@@ -2,7 +2,7 @@
   "name": "nasm-compiler-linux",
   "displayName": "nasm-compiler-linux",
   "description": "An extension to compile and run nasm assembly codes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "KratosGado",
   "author": {
     "name": "Prince Mbeah Essilfie",
