@@ -18,7 +18,10 @@
     "vscode": "^1.79.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages",
+    "Debuggers",
+    "Other",
+    "Language Packs"
   ],
   "activationEvents": [
     "onLanguage:asm",
