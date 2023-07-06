@@ -81,6 +81,9 @@ Initial release of the NASM Extension.
 
 - added support nasm language mode
 
+### 0.0.3
+- working file directory error fix
+
 
 ## Following extension guidelines
 

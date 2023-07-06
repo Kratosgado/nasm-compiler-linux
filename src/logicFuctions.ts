@@ -15,7 +15,7 @@ export async function compileAssembly() {
     const objectFilePath = assemblyFilePath.replace(/\.asm$/, '.o'); // Replace .asm with .o for the object file
     const basenamePath = assemblyFilePath.replace(/\.asm$/, "");	// get the basefilepath from the .asm filepath
 
-    const nasmCommand = `nasm -f elf64 -o ${objectFilePath} ${assemblyFilePath}`;	// nasm command to compile the .asm to object code .o
+    const nasmCommand = `nasm -f elf64 -o "${objectFilePath}" "${assemblyFilePath}"`;	// nasm command to compile the .asm to object code .o
     const ldCommand = `ld "${objectFilePath}" -o "${basenamePath}"`;				// linking command to create an executable file
 
     // run the nasmCommand
@@ -39,19 +39,21 @@ export async function compileAssembly() {
             console.log(nasmStderr);
         }
     });
-    return path.basename(assemblyFilePath, path.extname(assemblyFilePath)); // return the basename of the file
+    return basenamePath; // return the basename of the file
 }
 
 // Run logic
 export async function runAssembly() {
-    const fileBasename = await compileAssembly(); // the compileAssembly() command returns the basename of the assembler file
-
-    const execCommand = `./${fileBasename}`; // command to execute the executable
+    const basenamePath = await compileAssembly(); // the compileAssembly() command returns the basename of the assembler file
+    const basename = path.basename(basenamePath!, path.extname(basenamePath!)); // retrieve the basename from the file path
+    const fileDirectory = path.dirname(basenamePath!); // retrieve the file directory from the file path
+    const execCommand = `cd ${fileDirectory} && ./"${basename}"`; // command to execute the executable
 
     // check and get a terminal with the name "NASM Terminal"
     const existingTerminal = vscode.window.terminals.find((terminal) => terminal.name === 'NASM Terminal');
 
     if (existingTerminal) {
+        existingTerminal.sendText("clear");
         existingTerminal.sendText(execCommand); // send the execCommand to it if such exists
     } else {
         // else create a new terminal with the name "NASM Terminal" and send the execCommand
